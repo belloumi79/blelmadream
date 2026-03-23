@@ -8,6 +8,13 @@
       "when": 1774224850792,
       "tag": "0000_daffy_sauron",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1774228351756,
+      "tag": "0001_fantastic_loa",
+      "breakpoints": true
     }
   ]
 }

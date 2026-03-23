@@ -39,3 +39,16 @@ export const products = sqliteTable('products', {
   producerNameFr: text('producer_name_fr'),
   imageUrl: text('image_url'),
 });
+
+export const events = sqliteTable('events', {
+  id: text('id').primaryKey(),
+  titleAr: text('title_ar').notNull(),
+  titleEn: text('title_en'),
+  titleFr: text('title_fr'),
+  contentAr: text('content_ar').notNull(),
+  contentEn: text('content_en'),
+  contentFr: text('content_fr'),
+  date: text('date'),
+  imageUrl: text('image_url'),
+  createdAt: integer('created_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
+});

@@ -10,6 +10,7 @@ export default function AdminLayout({
         <h2 style={{ color: 'var(--brand-yellow)', fontSize: '1.5rem', marginBottom: '2rem' }}>لوحة التحكم</h2>
         <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           <li><a href="/admin" style={{ color: 'white', textDecoration: 'none' }}>الرئيسية</a></li>
+          <li><a href="/admin/events" style={{ color: 'var(--brand-yellow)', textDecoration: 'none', fontWeight: 'bold' }}>الأحداث والمهرجانات</a></li>
           <li><a href="/admin/projects" style={{ color: 'white', textDecoration: 'none' }}>المشاريع</a></li>
           <li><a href="/admin/products" style={{ color: 'white', textDecoration: 'none' }}>المنتجات المحلية</a></li>
           <li><a href="/" style={{ color: 'var(--brand-green)', textDecoration: 'none', marginTop: '2rem', display: 'block' }}>&larr; العودة للموقع</a></li>
