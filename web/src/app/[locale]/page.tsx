@@ -1,10 +1,12 @@
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import { HardHat, Leaf, Code, Globe2, Sparkles, Heart } from "lucide-react";
 import EventsList from '@/components/EventsList';
 
-export default function Home({ params: { locale } }: { params: { locale: string } }) {
-  const t = useTranslations('Hero');
-  const nav = useTranslations('Navigation');
+export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
+  const resolvedParams = await params;
+  const locale = resolvedParams.locale;
+  const t = await getTranslations('Hero');
+  const nav = await getTranslations('Navigation');
 
   return (
     <>

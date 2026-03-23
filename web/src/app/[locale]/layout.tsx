@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import Image from "next/image";
 import LanguageSwitcher from '@/components/LanguageSwitcher';
+import { auth, signOut } from '@/auth';
 import "./globals.css";
 
 // Use Noto Kufi Arabic for beautiful Arabic typography
@@ -37,6 +38,7 @@ export default async function RootLayout({
  
   const messages = await getMessages();
   const t = await getTranslations('Navigation');
+  const session = await auth();
 
   const dir = locale === 'ar' ? 'rtl' : 'ltr';
 
@@ -61,7 +63,27 @@ export default async function RootLayout({
               </div>
               <div className="nav-actions" style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
                 <LanguageSwitcher />
-                <button className="btn-primary">{locale === 'ar' ? 'قف معنا' : locale === 'fr' ? 'Soutenez-nous' : 'Stand with us'}</button>
+                {session?.user ? (
+                  <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                    <form action={async () => {
+                      'use server';
+                      await signOut();
+                    }}>
+                      <button type="submit" className="btn-secondary" style={{ padding: '0.4rem 0.8rem', fontSize: '0.9rem' }}>
+                        {locale === 'ar' ? 'تسجيل الخروج' : locale === 'fr' ? 'Déconnexion' : 'Logout'}
+                      </button>
+                    </form>
+                    {session.user.role === 'admin' && (
+                      <a href={`/${locale}/admin`} className="btn-primary" style={{ padding: '0.4rem 0.8rem', fontSize: '0.9rem' }}>
+                        {locale === 'ar' ? 'لوحة التحكم' : locale === 'fr' ? 'Tableau de bord' : 'Dashboard'}
+                      </a>
+                    )}
+                  </div>
+                ) : (
+                  <a href="/api/auth/signin" className="btn-primary" style={{ padding: '0.5rem 1rem' }}>
+                    {locale === 'ar' ? 'تسجيل الدخول' : locale === 'fr' ? 'Se connecter' : 'Login'}
+                  </a>
+                )}
               </div>
             </div>
           </nav>
