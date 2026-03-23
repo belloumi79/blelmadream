@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { Inter, Noto_Kufi_Arabic } from "next/font/google";
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
+import { getMessages, getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import Image from "next/image";
+import LanguageSwitcher from '@/components/LanguageSwitcher';
 import "./globals.css";
 
 // Use Noto Kufi Arabic for beautiful Arabic typography
@@ -34,8 +35,8 @@ export default async function RootLayout({
     notFound();
   }
  
-  // Providing all messages to the client
   const messages = await getMessages();
+  const t = await getTranslations('Navigation');
 
   const dir = locale === 'ar' ? 'rtl' : 'ltr';
 
@@ -53,13 +54,14 @@ export default async function RootLayout({
                 </div>
               </div>
               <div className="nav-links">
-                <a href="#about">اكتشف جذورنا</a>
-                <a href="#projects">مشاريعنا</a>
-                <a href="#store">المنتجات المحلية</a>
-                <a href="https://www.facebook.com/profile.php?id=100066988150540" target="_blank" rel="noopener noreferrer" className="social-link">فيسبوك</a>
+                <a href="#about">{t('about')}</a>
+                <a href="#projects">{t('projects')}</a>
+                <a href="#store">{t('store')}</a>
+                <a href="https://www.facebook.com/profile.php?id=100066988150540" target="_blank" rel="noopener noreferrer" className="social-link">{t('facebook')}</a>
               </div>
-              <div className="nav-actions">
-                <button className="btn-primary">قف معنا</button>
+              <div className="nav-actions" style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                <LanguageSwitcher />
+                <button className="btn-primary">{locale === 'ar' ? 'قف معنا' : locale === 'fr' ? 'Soutenez-nous' : 'Stand with us'}</button>
               </div>
             </div>
           </nav>
