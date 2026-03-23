@@ -1,7 +1,8 @@
 import { useTranslations } from 'next-intl';
 import { HardHat, Leaf, Code, Globe2, Sparkles, Heart } from "lucide-react";
+import EventsList from '@/components/EventsList';
 
-export default function Home() {
+export default function Home({ params: { locale } }: { params: { locale: string } }) {
   const t = useTranslations('Hero');
   const nav = useTranslations('Navigation');
 
@@ -54,6 +55,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* EVENTS & FESTIVALS */}
+      <EventsList locale={locale} />
 
       {/* CORE PILLARS */}
       <section id="projects" className="section">

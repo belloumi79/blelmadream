@@ -11,5 +11,9 @@
     "description": "L'association Blelma Dream est le lien entre l'héritage traditionnel et le développement durable. Nous stimulons l'agriculture, accompagnons les jeunes et préservons la mémoire.",
     "cta_discover": "Découvrez nos racines",
     "cta_contact": "Contactez-nous"
+  },
+  "EventsList": {
+    "title": "Événements et Festivals",
+    "subtitle": "Quelques-unes des activités et événements organisés par l'association pour faire revivre le patrimoine et développer la région"
   }
 }
