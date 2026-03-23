@@ -1,0 +1,15 @@
+{
+  "Navigation": {
+    "about": "Discover our roots",
+    "projects": "Our Projects",
+    "store": "Local Store",
+    "facebook": "Contact Us"
+  },
+  "Hero": {
+    "subtitle": "Together we make a difference",
+    "title": "Heartbeat of Rural Tunisia.<br />Authenticity, Resilience, Building.",
+    "description": "Association Blelma Dream bridges traditional heritage and sustainable development. We empower farmers, guide youth, and preserve Tunisian rural memory.",
+    "cta_discover": "Discover our roots",
+    "cta_contact": "Contact Us"
+  }
+}

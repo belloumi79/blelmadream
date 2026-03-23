@@ -1,23 +1,27 @@
+import { useTranslations } from 'next-intl';
 import { HardHat, Leaf, Code, Globe2, Sparkles, Heart } from "lucide-react";
 
 export default function Home() {
+  const t = useTranslations('Hero');
+  const nav = useTranslations('Navigation');
+
   return (
     <>
       {/* HERO SECTION */}
       <section className="hero">
         <div className="hero-decoration"></div>
         <div className="hero-content">
-          <span className="hero-subtitle">معاً نصنع الفارق</span>
-          <h1>نبض الريف التونسي.<br />أصالة، صمود، وبناء.</h1>
+          <span className="hero-subtitle">{t('subtitle')}</span>
+          <h1 dangerouslySetInnerHTML={{ __html: t('title') }}></h1>
           <p>
-            تجمع <strong>جمعية حلم البلالـمة</strong> بين التراث والأصالة والتنمية المُستدامة. نحن نُمكن الفلاحين، ونضع الشباب في مسار مشرق ونحفظ الذاكرة الريفية التونسية.
+            {t('description')}
           </p>
           <div className="hero-actions">
             <a href="#about" className="btn-primary">
-              اكتشف جذورنا
+              {t('cta_discover')}
             </a>
             <a href="https://www.facebook.com/profile.php?id=100066988150540" target="_blank" rel="noopener noreferrer" className="btn-secondary">
-              تواصل معنا
+              {t('cta_contact')}
             </a>
           </div>
         </div>

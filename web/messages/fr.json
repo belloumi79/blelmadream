@@ -1,0 +1,15 @@
+{
+  "Navigation": {
+    "about": "Découvrez nos racines",
+    "projects": "Nos Projets",
+    "store": "Produits Locaux",
+    "facebook": "Contactez-nous"
+  },
+  "Hero": {
+    "subtitle": "Ensemble, nous faisons la différence",
+    "title": "Le pouls de la Tunisie rurale.<br />Authenticité, Résilience, Bâtisseurs.",
+    "description": "L'association Blelma Dream est le lien entre l'héritage traditionnel et le développement durable. Nous stimulons l'agriculture, accompagnons les jeunes et préservons la mémoire.",
+    "cta_discover": "Découvrez nos racines",
+    "cta_contact": "Contactez-nous"
+  }
+}
