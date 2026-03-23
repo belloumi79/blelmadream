@@ -1,0 +1,303 @@
+:root {
+  /* Brand Colors from Logo */
+  --brand-blue: #185880;
+  --brand-green: #8bc53f;
+  --brand-yellow: #f8b417;
+
+  /* Neutrals */
+  --bg-primary: #fdfdf9; /* Warm off-white, sandy feel */
+  --bg-secondary: #f4f5ef;
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  --border-color: #e2e8f0;
+
+  /* Typography */
+  --font-family: var(--font-noto-kufi), 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --spacing-base: 1rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  direction: rtl; /* Enforce RTL layout natively */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* -------------------
+ * TYPOGRAPHY
+ * ------------------- */
+h1, h2, h3, h4 {
+  color: var(--brand-blue);
+  line-height: 1.3;
+  margin-bottom: var(--spacing-base);
+}
+
+h1 { font-size: 3.5rem; font-weight: 700; }
+h2 { font-size: 2.5rem; font-weight: 600; text-align: center; }
+p { margin-bottom: 1.5rem; font-size: 1.125rem; }
+
+/* -------------------
+ * BUTTONS
+ * ------------------- */
+.btn-primary, .btn-secondary {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px; /* Pill shape */
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  border: none;
+}
+
+.btn-primary {
+  background-color: var(--brand-green);
+  color: white;
+  box-shadow: 0 4px 14px rgba(139, 197, 63, 0.4);
+}
+.btn-primary:hover {
+  background-color: #7ab332;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(139, 197, 63, 0.5);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--brand-blue);
+  border: 2px solid var(--brand-blue);
+}
+.btn-secondary:hover {
+  background-color: var(--brand-blue);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* -------------------
+ * NAVIGATION
+ * ------------------- */
+.navbar {
+  position: sticky;
+  top: 0;
+  background-color: rgba(253, 253, 249, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border-color);
+  z-index: 1000;
+  padding: 1rem 0;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand-name {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.brand-ar {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--brand-blue);
+}
+
+.brand-en {
+  font-size: 0.9rem;
+  color: var(--brand-green);
+  font-weight: 600;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-primary);
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--brand-green);
+}
+
+.social-link {
+  color: var(--brand-blue) !important;
+  font-weight: 700 !important;
+}
+
+/* -------------------
+ * HERO SECTION
+ * ------------------- */
+.hero {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 2rem;
+  background: linear-gradient(135deg, rgba(24, 88, 128, 0.05) 0%, rgba(139, 197, 63, 0.1) 100%);
+  overflow: hidden;
+}
+
+/* A soft decorative element mimicking the hand and leaf from the logo */
+.hero-decoration {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(139,197,63,0.15) 0%, rgba(253,253,249,0) 70%);
+  border-radius: 50%;
+  top: -100px;
+  right: -200px;
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+}
+
+.hero-subtitle {
+  color: var(--brand-yellow);
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.hero h1 {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  color: var(--brand-blue);
+}
+
+.hero p {
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  margin-bottom: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+/* -------------------
+ * LAYOUT SHAPES (Premium touch)
+ * ------------------- */
+.section {
+  padding: 6rem 2rem;
+}
+
+.bg-blue-tint {
+  background-color: var(--brand-blue);
+  color: white;
+}
+
+.bg-blue-tint h2, .bg-blue-tint p {
+  color: white;
+}
+
+.bg-green-tint {
+  background-color: var(--brand-green);
+  color: white;
+}
+
+/* -------------------
+ * CARDS
+ * ------------------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 3rem auto 0;
+}
+
+.card {
+  background: white;
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 40px -10px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--border-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1);
+}
+
+.card-icon {
+  font-size: 2.5rem;
+  color: var(--brand-yellow);
+  margin-bottom: 1.5rem;
+}
+
+.card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* -------------------
+ * FOOTER
+ * ------------------- */
+.footer {
+  background-color: var(--brand-blue);
+  color: white;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.footer-brand {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--brand-yellow);
+  margin-bottom: 1rem;
+}
+
+.footer p {
+  color: rgba(255,255,255,0.8);
+}
+
+.footer .social-link {
+  color: white !important;
+  text-decoration: underline;
+  margin-top: 1rem;
+  display: inline-block;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 2.5rem; }
+  .hero p { font-size: 1.125rem; }
+  .hero-actions { flex-direction: column; }
+  .nav-links { display: none; }
+}
