@@ -15,5 +15,36 @@
   "EventsList": {
     "title": "Events and Festivals",
     "subtitle": "Some of the activities and events organized by the association to revive heritage and develop the region"
+  },
+  "Impact": {
+    "title": "Our Impact Creates Hope",
+    "subtitle": "Thanks to the efforts of the region's people and continuous support, we have achieved tangible impact on the ground.",
+    "stat1_title": "100+ Families",
+    "stat1_desc": "have directly benefited from our solidarity and agricultural programs.",
+    "stat2_title": "Cultural Festival",
+    "stat2_desc": "reviving rich customs and showcasing the equestrian heritage and traditions of the region.",
+    "stat3_title": "Future Horizons",
+    "stat3_desc": "Growing partnerships to position the region on the path of solidarity tourism."
+  },
+  "Pillars": {
+    "title": "Our Areas of Work",
+    "subtitle": "We don't just make promises — we plant actions that bear fruit for real development of the region and its people.",
+    "pillar1_title": "Agriculture & Rural Development",
+    "pillar1_desc": "Helping small farmers access modern and sustainable techniques for olive pressing, honey harvesting, and supporting authentic local products.",
+    "pillar2_title": "Youth Support & Future Building",
+    "pillar2_desc": "Providing training opportunities and integrating youth into the cultural and economic life of the region to prevent exodus and build a resilient economy.",
+    "pillar3_title": "Culture & Heritage",
+    "pillar3_desc": "Reviving customs and traditions through seasonal events and festivals celebrating equestrian arts, traditional attire, and local cuisine."
+  },
+  "Footer": {
+    "brand": "Blelma Dream Association",
+    "tagline": "Authentic Tunisian Rural Development.",
+    "facebook": "Follow us on Facebook",
+    "rights": "All rights reserved"
+  },
+  "Auth": {
+    "logout": "Logout",
+    "login": "Login",
+    "dashboard": "Dashboard"
   }
 }

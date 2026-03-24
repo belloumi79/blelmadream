@@ -5,7 +5,7 @@
   --brand-yellow: #f8b417;
 
   /* Neutrals */
-  --bg-primary: #fdfdf9; /* Warm off-white, sandy feel */
+  --bg-primary: #fdfdf9;
   --bg-secondary: #f4f5ef;
   --text-primary: #1e293b;
   --text-secondary: #475569;
@@ -27,7 +27,6 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
-  direction: rtl; /* Enforce RTL layout natively */
   -webkit-font-smoothing: antialiased;
 }
 
@@ -40,9 +39,9 @@ h1, h2, h3, h4 {
   margin-bottom: var(--spacing-base);
 }
 
-h1 { font-size: 3.5rem; font-weight: 700; }
-h2 { font-size: 2.5rem; font-weight: 600; text-align: center; }
-p { margin-bottom: 1.5rem; font-size: 1.125rem; }
+h1 { font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 700; }
+h2 { font-size: clamp(1.6rem, 4vw, 2.5rem); font-weight: 600; text-align: center; }
+p { margin-bottom: 1.5rem; font-size: clamp(1rem, 2.5vw, 1.125rem); }
 
 /* -------------------
  * BUTTONS
@@ -50,13 +49,19 @@ p { margin-bottom: 1.5rem; font-size: 1.125rem; }
 .btn-primary, .btn-secondary {
   display: inline-block;
   padding: 0.75rem 2rem;
-  border-radius: 9999px; /* Pill shape */
+  border-radius: 9999px;
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
   border: none;
+  white-space: nowrap;
+}
+
+.btn-sm {
+  padding: 0.4rem 0.9rem;
+  font-size: 0.9rem;
 }
 
 .btn-primary {
@@ -87,20 +92,28 @@ p { margin-bottom: 1.5rem; font-size: 1.125rem; }
 .navbar {
   position: sticky;
   top: 0;
-  background-color: rgba(253, 253, 249, 0.95);
-  backdrop-filter: blur(8px);
+  background-color: rgba(253, 253, 249, 0.97);
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-color);
   z-index: 1000;
-  padding: 1rem 0;
+  padding: 0.75rem 0;
 }
 
 .nav-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
 }
 
 .brand-name {
@@ -110,20 +123,21 @@ p { margin-bottom: 1.5rem; font-size: 1.125rem; }
 }
 
 .brand-ar {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: 700;
   color: var(--brand-blue);
 }
 
 .brand-en {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--brand-green);
   font-weight: 600;
 }
 
+/* Desktop nav links */
 .nav-links {
   display: flex;
-  gap: 2.5rem;
+  gap: 2rem;
   align-items: center;
 }
 
@@ -132,6 +146,7 @@ p { margin-bottom: 1.5rem; font-size: 1.125rem; }
   color: var(--text-primary);
   font-weight: 500;
   transition: color 0.2s;
+  font-size: 0.95rem;
 }
 
 .nav-links a:hover {
@@ -141,6 +156,130 @@ p { margin-bottom: 1.5rem; font-size: 1.125rem; }
 .social-link {
   color: var(--brand-blue) !important;
   font-weight: 700 !important;
+}
+
+.nav-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.auth-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* -------------------
+ * HAMBURGER BUTTON
+ * ------------------- */
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 8px;
+  transition: background 0.2s;
+}
+
+.hamburger-btn:hover {
+  background: var(--bg-secondary);
+}
+
+.hamburger-line {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--brand-blue);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.open-1 {
+  transform: translateY(7px) rotate(45deg);
+}
+.open-2 {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.open-3 {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* -------------------
+ * MOBILE DRAWER
+ * ------------------- */
+.mobile-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1100;
+  animation: fadeIn 0.2s ease;
+}
+
+.mobile-drawer {
+  display: none;
+  position: fixed;
+  top: 0;
+  /* positioning handled separately for RTL/LTR in @media */
+  right: 0;
+  width: 280px;
+  height: 100vh;
+  background: var(--bg-primary);
+  z-index: 1200;
+  padding: 5rem 2rem 2rem;
+  box-shadow: -4px 0 30px rgba(0,0,0,0.15);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  overflow-y: auto;
+}
+
+[dir="rtl"] .mobile-drawer {
+  right: auto;
+  left: 0;
+  box-shadow: 4px 0 30px rgba(0,0,0,0.15);
+  transform: translateX(-100%);
+}
+
+.mobile-drawer.drawer-open {
+  transform: translateX(0);
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.mobile-nav-links a {
+  text-decoration: none;
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: 1.1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-color);
+  display: block;
+  transition: color 0.2s, padding-inline-start 0.2s;
+}
+
+.mobile-nav-links a:hover {
+  color: var(--brand-green);
+  padding-inline-start: 0.5rem;
+}
+
+.mobile-nav-links a.social-link {
+  color: var(--brand-blue) !important;
+  font-weight: 700 !important;
+  border-bottom: none;
+  margin-top: 0.5rem;
 }
 
 /* -------------------
@@ -153,12 +292,11 @@ p { margin-bottom: 1.5rem; font-size: 1.125rem; }
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 0 2rem;
+  padding: 4rem 1.5rem;
   background: linear-gradient(135deg, rgba(24, 88, 128, 0.05) 0%, rgba(139, 197, 63, 0.1) 100%);
   overflow: hidden;
 }
 
-/* A soft decorative element mimicking the hand and leaf from the logo */
 .hero-decoration {
   position: absolute;
   width: 600px;
@@ -168,18 +306,20 @@ p { margin-bottom: 1.5rem; font-size: 1.125rem; }
   top: -100px;
   right: -200px;
   z-index: 0;
+  pointer-events: none;
 }
 
 .hero-content {
   position: relative;
   z-index: 1;
   max-width: 800px;
+  width: 100%;
 }
 
 .hero-subtitle {
   color: var(--brand-yellow);
   font-weight: 700;
-  font-size: 1.25rem;
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
   letter-spacing: 1px;
   text-transform: uppercase;
   margin-bottom: 1rem;
@@ -187,31 +327,31 @@ p { margin-bottom: 1.5rem; font-size: 1.125rem; }
 }
 
 .hero h1 {
-  font-size: 4rem;
+  font-size: clamp(2rem, 6vw, 4rem);
   margin-bottom: 1.5rem;
   color: var(--brand-blue);
 }
 
 .hero p {
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
   color: var(--text-secondary);
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
   max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-inline: auto;
 }
 
 .hero-actions {
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 /* -------------------
- * LAYOUT SHAPES (Premium touch)
+ * SECTIONS
  * ------------------- */
 .section {
-  padding: 6rem 2rem;
+  padding: clamp(3rem, 8vw, 6rem) 1.5rem;
 }
 
 .bg-blue-tint {
@@ -223,26 +363,25 @@ p { margin-bottom: 1.5rem; font-size: 1.125rem; }
   color: white;
 }
 
-.bg-green-tint {
-  background-color: var(--brand-green);
-  color: white;
+.bg-light {
+  background-color: var(--bg-secondary);
 }
 
 /* -------------------
- * CARDS
+ * CARDS / GRID
  * ------------------- */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: 1.5rem;
   max-width: 1200px;
-  margin: 3rem auto 0;
+  margin: 2.5rem auto 0;
 }
 
 .card {
   background: white;
   border-radius: 20px;
-  padding: 2.5rem;
+  padding: 2rem;
   box-shadow: 0 10px 40px -10px rgba(0,0,0,0.05);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid var(--border-color);
@@ -258,12 +397,12 @@ p { margin-bottom: 1.5rem; font-size: 1.125rem; }
 .card-icon {
   font-size: 2.5rem;
   color: var(--brand-yellow);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
 .card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  margin-bottom: 0.75rem;
 }
 
 /* -------------------
@@ -272,15 +411,20 @@ p { margin-bottom: 1.5rem; font-size: 1.125rem; }
 .footer {
   background-color: var(--brand-blue);
   color: white;
-  padding: 4rem 2rem;
+  padding: clamp(2.5rem, 6vw, 4rem) 1.5rem;
   text-align: center;
 }
 
+.footer-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
 .footer-brand {
-  font-size: 2rem;
+  font-size: clamp(1.4rem, 4vw, 2rem);
   font-weight: 700;
   color: var(--brand-yellow);
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 .footer p {
@@ -292,12 +436,103 @@ p { margin-bottom: 1.5rem; font-size: 1.125rem; }
   text-decoration: underline;
   margin-top: 1rem;
   display: inline-block;
+  font-weight: 600;
 }
 
-/* Mobile Responsiveness */
+/* -------------------
+ * ANIMATIONS
+ * ------------------- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* -------------------
+ * RESPONSIVE BREAKPOINTS
+ * ------------------- */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .nav-links {
+    gap: 1.5rem;
+  }
+}
+
+/* Mobile */
 @media (max-width: 768px) {
-  .hero h1 { font-size: 2.5rem; }
-  .hero p { font-size: 1.125rem; }
-  .hero-actions { flex-direction: column; }
-  .nav-links { display: none; }
+  /* Show hamburger, hide desktop nav */
+  .hamburger-btn {
+    display: flex;
+  }
+
+  .mobile-overlay,
+  .mobile-drawer {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  /* Hide auth buttons text on small screens — keep only essential */
+  .auth-actions .btn-secondary,
+  .auth-actions .btn-primary {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  /* Brand name smaller */
+  .brand-ar {
+    font-size: 1.1rem;
+  }
+  .brand-en {
+    font-size: 0.75rem;
+  }
+
+  /* Nav logo smaller */
+  .logo-container img {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  /* Hero */
+  .hero {
+    min-height: 80vh;
+    padding: 3rem 1.25rem;
+  }
+
+  /* Cards stacked */
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  /* Section padding */
+  .section {
+    padding: 3rem 1.25rem;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 480px) {
+  .nav-container {
+    padding: 0 1rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-actions .btn-primary,
+  .hero-actions .btn-secondary {
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+  }
+
+  /* Hide lang switcher label text if needed */
+  .brand-en {
+    display: none;
+  }
 }

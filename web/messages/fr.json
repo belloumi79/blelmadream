@@ -15,5 +15,36 @@
   "EventsList": {
     "title": "Événements et Festivals",
     "subtitle": "Quelques-unes des activités et événements organisés par l'association pour faire revivre le patrimoine et développer la région"
+  },
+  "Impact": {
+    "title": "Notre Impact Crée l'Espoir",
+    "subtitle": "Grâce aux efforts des fils de la région et au soutien continu, nous avons réussi à avoir un impact concret sur le terrain.",
+    "stat1_title": "100+ Familles",
+    "stat1_desc": "ont bénéficié directement de nos programmes solidaires et agricoles.",
+    "stat2_title": "Festival Culturel",
+    "stat2_desc": "qui ravive les coutumes et présente l'équitation et les traditions de la région.",
+    "stat3_title": "Perspectives d'Avenir",
+    "stat3_desc": "Des partenariats croissants pour positionner la région sur la voie du tourisme solidaire."
+  },
+  "Pillars": {
+    "title": "Nos Domaines d'Action",
+    "subtitle": "Nous ne faisons pas que des promesses, nous plantons des actions qui portent leurs fruits pour un vrai développement de la région.",
+    "pillar1_title": "Agriculture et Développement Rural",
+    "pillar1_desc": "Aider les petits agriculteurs à accéder à des techniques modernes et durables pour la récolte d'olives, le miel et le soutien aux produits locaux authentiques.",
+    "pillar2_title": "Soutien aux Jeunes et à l'Avenir",
+    "pillar2_desc": "Offrir des opportunités de formation et intégrer les jeunes dans la vie culturelle et économique de la région pour prévenir l'exode et construire une économie résiliente.",
+    "pillar3_title": "Culture et Patrimoine",
+    "pillar3_desc": "Faire revivre les coutumes et traditions grâce à des événements saisonniers et des festivals célébrant l'équitation, les vêtements traditionnels et la cuisine locale."
+  },
+  "Footer": {
+    "brand": "Association Blelma Dream",
+    "tagline": "Le développement rural tunisien authentique.",
+    "facebook": "Suivez-nous sur Facebook",
+    "rights": "Tous droits réservés"
+  },
+  "Auth": {
+    "logout": "Déconnexion",
+    "login": "Se connecter",
+    "dashboard": "Tableau de bord"
   }
 }

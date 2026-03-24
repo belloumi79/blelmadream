@@ -6,7 +6,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   const resolvedParams = await params;
   const locale = resolvedParams.locale;
   const t = await getTranslations('Hero');
-  const nav = await getTranslations('Navigation');
+  const impact = await getTranslations('Impact');
+  const pillars = await getTranslations('Pillars');
 
   return (
     <>
@@ -31,28 +32,28 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       </section>
 
       {/* IMPACT / STATS */}
-      <section className="section bg-blue-tint">
+      <section id="about" className="section bg-blue-tint">
         <div className="nav-container" style={{ textAlign: "center" }}>
-          <h2>تأثيرنا يصنع الأمل</h2>
+          <h2>{impact('title')}</h2>
           <p style={{ maxWidth: "600px", margin: "0 auto", opacity: 0.9 }}>
-            بفضل جهود أبناء المنطقة والدعم المتواصل، نجحنا في تحقيق أثر ملموس على أرض الواقع.
+            {impact('subtitle')}
           </p>
           
           <div className="grid">
             <div className="card" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "#fff" }}>
               <div className="card-icon"><Heart size={48} color="var(--brand-yellow)" /></div>
-              <h3 style={{ color: "white" }}>100+ عائلة</h3>
-              <p>استفادت بشكل مباشر من برامجنا التضامنية والفلاحية.</p>
+              <h3 style={{ color: "white" }}>{impact('stat1_title')}</h3>
+              <p>{impact('stat1_desc')}</p>
             </div>
             <div className="card" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "#fff" }}>
               <div className="card-icon"><Sparkles size={48} color="var(--brand-yellow)" /></div>
-              <h3 style={{ color: "white" }}>مهرجان ثقافي</h3>
-              <p>يحيي العادات الزاخرة ويعرف بفروسية وتقاليد المنطقة.</p>
+              <h3 style={{ color: "white" }}>{impact('stat2_title')}</h3>
+              <p>{impact('stat2_desc')}</p>
             </div>
             <div className="card" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "#fff" }}>
               <div className="card-icon"><Globe2 size={48} color="var(--brand-yellow)" /></div>
-              <h3 style={{ color: "white" }}>آفاق المستقبل</h3>
-              <p>شراكات متنامية لوضع المنطقة على مسار السياحة التضامنية.</p>
+              <h3 style={{ color: "white" }}>{impact('stat3_title')}</h3>
+              <p>{impact('stat3_desc')}</p>
             </div>
           </div>
         </div>
@@ -63,9 +64,9 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
       {/* CORE PILLARS */}
       <section id="projects" className="section">
-        <h2>مجالات عملنا</h2>
+        <h2>{pillars('title')}</h2>
         <p style={{ textAlign: "center", color: "var(--text-secondary)", maxWidth: "600px", margin: "0 auto 3rem auto" }}>
-          نحن لا نقدم مجرد وعود، بل نزرع أفعالاً تثمر تنمية حقيقية للمنطقة وأهلها.
+          {pillars('subtitle')}
         </p>
 
         <div className="grid">
@@ -73,27 +74,27 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             <div className="card-icon">
               <Leaf size={40} color="var(--brand-green)" />
             </div>
-            <h3>الزراعة والتنمية الريفية</h3>
+            <h3>{pillars('pillar1_title')}</h3>
             <p style={{ color: "var(--text-secondary)" }}>
-              مساعدة صغار الفلاحين للوصول إلى تقنيات حديثة وطرق مستدامة لعصر الزيتون وجني العسل ودعم المنتجات المحلية الأصيلة.
+              {pillars('pillar1_desc')}
             </p>
           </div>
           <div className="card">
             <div className="card-icon">
               <HardHat size={40} color="var(--brand-blue)" />
             </div>
-            <h3>دعم الشباب والمستقبل</h3>
+            <h3>{pillars('pillar2_title')}</h3>
             <p style={{ color: "var(--text-secondary)" }}>
-              توفير فرص تكوينية وإدماج الشباب في الحياة الثقافية والاقتصادية للمنطقة لمنع النزوح وبناء اقتصاد مرن.
+              {pillars('pillar2_desc')}
             </p>
           </div>
           <div className="card">
             <div className="card-icon">
               <Code size={40} color="var(--brand-yellow)" />
             </div>
-            <h3>الثقافة والتراث</h3>
+            <h3>{pillars('pillar3_title')}</h3>
             <p style={{ color: "var(--text-secondary)" }}>
-              إحياء العادات والتقاليد عبر فعاليات موسمية ومهرجانات تحتفي بالفروسية، اللباس التقليدي والطبخ المحلي.
+              {pillars('pillar3_desc')}
             </p>
           </div>
         </div>

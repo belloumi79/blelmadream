@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import Image from "next/image";
 import LanguageSwitcher from '@/components/LanguageSwitcher';
+import MobileMenu from '@/components/MobileMenu';
 import { auth, signOut } from '@/auth';
 import "./globals.css";
 
@@ -38,6 +39,8 @@ export default async function RootLayout({
  
   const messages = await getMessages();
   const t = await getTranslations('Navigation');
+  const footer = await getTranslations('Footer');
+  const auth_t = await getTranslations('Auth');
   const session = await auth();
 
   const dir = locale === 'ar' ? 'rtl' : 'ltr';
@@ -48,51 +51,60 @@ export default async function RootLayout({
         <NextIntlClientProvider messages={messages}>
           <nav className="navbar">
             <div className="nav-container">
-              <div className="logo-container" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <div className="logo-container">
                 <Image src="/logo.jpg" alt="Association Blelma Dream Logo" width={50} height={50} style={{ borderRadius: '50%' }} />
                 <div className="brand-name">
                   <span className="brand-ar">حلم البلالـمة</span>
                   <span className="brand-en">Blelma Dream</span>
                 </div>
               </div>
+
+              {/* Desktop nav links */}
               <div className="nav-links">
                 <a href="#about">{t('about')}</a>
                 <a href="#projects">{t('projects')}</a>
                 <a href="#store">{t('store')}</a>
                 <a href="https://www.facebook.com/profile.php?id=100066988150540" target="_blank" rel="noopener noreferrer" className="social-link">{t('facebook')}</a>
               </div>
-              <div className="nav-actions" style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+
+              <div className="nav-actions">
                 <LanguageSwitcher />
                 {session?.user ? (
-                  <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                  <div className="auth-actions">
                     <form action={async () => {
                       'use server';
                       await signOut();
                     }}>
-                      <button type="submit" className="btn-secondary" style={{ padding: '0.4rem 0.8rem', fontSize: '0.9rem' }}>
-                        {locale === 'ar' ? 'تسجيل الخروج' : locale === 'fr' ? 'Déconnexion' : 'Logout'}
+                      <button type="submit" className="btn-secondary btn-sm">
+                        {auth_t('logout')}
                       </button>
                     </form>
                     {session.user.role === 'admin' && (
-                      <a href={`/${locale}/admin`} className="btn-primary" style={{ padding: '0.4rem 0.8rem', fontSize: '0.9rem' }}>
-                        {locale === 'ar' ? 'لوحة التحكم' : locale === 'fr' ? 'Tableau de bord' : 'Dashboard'}
+                      <a href={`/${locale}/admin`} className="btn-primary btn-sm">
+                        {auth_t('dashboard')}
                       </a>
                     )}
                   </div>
                 ) : (
-                  <a href="/api/auth/signin" className="btn-primary" style={{ padding: '0.5rem 1rem' }}>
-                    {locale === 'ar' ? 'تسجيل الدخول' : locale === 'fr' ? 'Se connecter' : 'Login'}
+                  <a href="/api/auth/signin" className="btn-primary btn-sm">
+                    {auth_t('login')}
                   </a>
                 )}
+
+                {/* Hamburger for mobile */}
+                <MobileMenu />
               </div>
             </div>
           </nav>
           <main>{children}</main>
           <footer className="footer">
             <div className="footer-content">
-              <div className="footer-brand">جمعية حلم البلالـمة</div>
-              <p>التنمية الريفية التونسية الأصيلة.</p>
-              <a href="https://www.facebook.com/profile.php?id=100066988150540" target="_blank" rel="noopener noreferrer" className="social-link">تابعنا على فيسبوك</a>
+              <div className="footer-brand">{footer('brand')}</div>
+              <p>{footer('tagline')}</p>
+              <a href="https://www.facebook.com/profile.php?id=100066988150540" target="_blank" rel="noopener noreferrer" className="social-link">{footer('facebook')}</a>
+              <p style={{ marginTop: '2rem', fontSize: '0.85rem', opacity: 0.6 }}>
+                &copy; {new Date().getFullYear()} {footer('brand')} — {footer('rights')}
+              </p>
             </div>
           </footer>
         </NextIntlClientProvider>
