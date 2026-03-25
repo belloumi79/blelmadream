@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import { HardHat, Leaf, Code, Globe2, Sparkles, Heart } from "lucide-react";
 import EventsList from '@/components/EventsList';
+import ProjectsList from '@/components/ProjectsList';
 
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
   const resolvedParams = await params;
@@ -64,41 +65,46 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
       {/* CORE PILLARS */}
       <section id="projects" className="section">
-        <h2>{pillars('title')}</h2>
-        <p style={{ textAlign: "center", color: "var(--text-secondary)", maxWidth: "600px", margin: "0 auto 3rem auto" }}>
-          {pillars('subtitle')}
-        </p>
+        <div className="nav-container">
+            <h2 style={{ textAlign: 'center' }}>{pillars('title')}</h2>
+            <p style={{ textAlign: "center", color: "var(--text-secondary)", maxWidth: "600px", margin: "0 auto 3rem auto" }}>
+            {pillars('subtitle')}
+            </p>
 
-        <div className="grid">
-          <div className="card">
-            <div className="card-icon">
-              <Leaf size={40} color="var(--brand-green)" />
+            <div className="grid">
+            <div className="card">
+                <div className="card-icon">
+                <Leaf size={40} color="var(--brand-green)" />
+                </div>
+                <h3>{pillars('pillar1_title')}</h3>
+                <p style={{ color: "var(--text-secondary)" }}>
+                {pillars('pillar1_desc')}
+                </p>
             </div>
-            <h3>{pillars('pillar1_title')}</h3>
-            <p style={{ color: "var(--text-secondary)" }}>
-              {pillars('pillar1_desc')}
-            </p>
-          </div>
-          <div className="card">
-            <div className="card-icon">
-              <HardHat size={40} color="var(--brand-blue)" />
+            <div className="card">
+                <div className="card-icon">
+                <HardHat size={40} color="var(--brand-blue)" />
+                </div>
+                <h3>{pillars('pillar2_title')}</h3>
+                <p style={{ color: "var(--text-secondary)" }}>
+                {pillars('pillar2_desc')}
+                </p>
             </div>
-            <h3>{pillars('pillar2_title')}</h3>
-            <p style={{ color: "var(--text-secondary)" }}>
-              {pillars('pillar2_desc')}
-            </p>
-          </div>
-          <div className="card">
-            <div className="card-icon">
-              <Code size={40} color="var(--brand-yellow)" />
+            <div className="card">
+                <div className="card-icon">
+                <Code size={40} color="var(--brand-yellow)" />
+                </div>
+                <h3>{pillars('pillar3_title')}</h3>
+                <p style={{ color: "var(--text-secondary)" }}>
+                {pillars('pillar3_desc')}
+                </p>
             </div>
-            <h3>{pillars('pillar3_title')}</h3>
-            <p style={{ color: "var(--text-secondary)" }}>
-              {pillars('pillar3_desc')}
-            </p>
-          </div>
+            </div>
         </div>
       </section>
+
+      {/* REAL PROJECTS LIST FROM DB */}
+      <ProjectsList locale={locale} />
     </>
   );
 }
