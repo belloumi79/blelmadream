@@ -70,7 +70,10 @@ export default async function RootLayout({
               <div className="nav-actions">
                 <LanguageSwitcher />
                 {session?.user ? (
-                  <div className="auth-actions">
+                  <div className="auth-actions" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    <span style={{ fontSize: '0.85rem', color: 'var(--brand-green)', fontWeight: 'bold', background: 'var(--bg-secondary)', padding: '0.3rem 0.6rem', borderRadius: '15px' }}>
+                      {auth_t(`role_${session.user.role || 'user'}` as any)}
+                    </span>
                     <form action={async () => {
                       'use server';
                       await signOut();

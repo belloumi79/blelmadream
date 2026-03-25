@@ -45,6 +45,10 @@
   "Auth": {
     "logout": "Déconnexion",
     "login": "Se connecter",
-    "dashboard": "Tableau de bord"
+    "dashboard": "Tableau de bord",
+    "role_admin": "Administrateur",
+    "role_subscriber": "Abonné(e)",
+    "role_friend": "Ami(e) de l'asso",
+    "role_user": "Utilisateur"
   }
 }

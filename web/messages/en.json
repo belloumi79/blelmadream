@@ -45,6 +45,10 @@
   "Auth": {
     "logout": "Logout",
     "login": "Login",
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "role_admin": "Admin",
+    "role_subscriber": "Subscriber",
+    "role_friend": "Friend of Association",
+    "role_user": "User"
   }
 }
