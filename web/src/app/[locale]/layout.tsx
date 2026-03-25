@@ -89,9 +89,14 @@ export default async function RootLayout({
                     )}
                   </div>
                 ) : (
-                  <a href="/api/auth/signin" className="btn-primary btn-sm">
-                    {auth_t('login')}
-                  </a>
+                  <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center' }}>
+                    <a href="#signup" className="btn-secondary btn-sm" style={{ border: '2px solid var(--brand-blue)', color: 'var(--brand-blue)', fontWeight: 'bold' }}>
+                      {locale === 'ar' ? 'انضم إلينا' : locale === 'fr' ? 'Rejoignez-nous' : 'Join Us'}
+                    </a>
+                    <a href="/api/auth/signin" className="btn-primary btn-sm">
+                      {auth_t('login')}
+                    </a>
+                  </div>
                 )}
 
                 {/* Hamburger for mobile */}
