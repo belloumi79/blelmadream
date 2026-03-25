@@ -95,7 +95,7 @@ export default async function RootLayout({
                 )}
 
                 {/* Hamburger for mobile */}
-                <MobileMenu />
+                <MobileMenu user={session?.user} />
               </div>
             </div>
           </nav>
