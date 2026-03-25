@@ -6,6 +6,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { revalidatePath } from 'next/cache';
 import { auth } from '@/auth';
 
+import { put } from '@vercel/blob';
+
 export async function createEvent(formData: FormData) {
   const session = await auth();
   
@@ -16,10 +18,17 @@ export async function createEvent(formData: FormData) {
   const titleAr = formData.get('titleAr') as string;
   const contentAr = formData.get('contentAr') as string;
   const dateStr = formData.get('date') as string;
-  const imageUrl = formData.get('imageUrl') as string;
+  const imageFile = formData.get('imageFile') as File;
 
   if (!titleAr || !contentAr) {
     throw new Error('Title and Content are required');
+  }
+
+  let imageUrl: string | null = null;
+  if (imageFile && imageFile.size > 0 && imageFile.name !== 'undefined') {
+    const filename = `events/${Date.now()}-${imageFile.name}`;
+    const blob = await put(filename, imageFile, { access: 'public' });
+    imageUrl = blob.url;
   }
 
   await db.insert(events).values({
@@ -27,8 +36,9 @@ export async function createEvent(formData: FormData) {
     titleAr,
     contentAr,
     date: dateStr || null,
-    imageUrl: imageUrl || null,
+    imageUrl,
   });
 
   revalidatePath('/[locale]/admin/events', 'page');
+  revalidatePath('/[locale]', 'page');
 }

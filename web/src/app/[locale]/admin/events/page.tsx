@@ -24,11 +24,11 @@ export default async function AdminEventsPage() {
             <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>تاريخ الحدث</label>
             <input name="date" type="date" required style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid var(--border-color)', outline: 'none' }} />
           </div>
-          <div>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>صورة الحدث (رابط URL مؤقتاً)</label>
-            <input name="imageUrl" type="url" placeholder="https://..." style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid var(--border-color)', outline: 'none' }} />
+           <div>
+            <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>تحميل صورة للحدث</label>
+            <input name="imageFile" type="file" accept="image/*" style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid var(--border-color)', outline: 'none' }} />
             <small style={{ color: 'var(--brand-blue)', display: 'block', marginTop: '0.5rem' }}>
-              * حالياً، قم برفع الصور على (مثال: imgbb.com أو postimages.org) ثم ضع الرابط المباشر هنا. قريباً سنبرمج الرفع المباشر.
+              * اختر صورة من جهازك بصيغة JPG، PNG أو WebP.
             </small>
           </div>
           <div>

@@ -14,6 +14,8 @@ async function assertAdmin() {
   }
 }
 
+import { put } from '@vercel/blob';
+
 export async function createProject(formData: FormData) {
   await assertAdmin();
 
@@ -22,11 +24,18 @@ export async function createProject(formData: FormData) {
   const titleEn = formData.get('titleEn') as string;
   const descriptionAr = formData.get('descriptionAr') as string;
   const category = formData.get('category') as string;
-  const imageUrl = formData.get('imageUrl') as string;
+  const imageFile = formData.get('imageFile') as File;
   const needsFunding = formData.get('needsFunding') === 'on';
 
   if (!titleAr || !category) {
     throw new Error('Title (AR) and Category are required');
+  }
+
+  let imageUrl: string | null = null;
+  if (imageFile && imageFile.size > 0 && imageFile.name !== 'undefined') {
+    const filename = `projects/${Date.now()}-${imageFile.name}`;
+    const blob = await put(filename, imageFile, { access: 'public' });
+    imageUrl = blob.url;
   }
 
   // Simple slug generation
@@ -40,7 +49,7 @@ export async function createProject(formData: FormData) {
     slug,
     descriptionAr: descriptionAr || null,
     category,
-    imageUrl: imageUrl || null,
+    imageUrl,
     needsFunding,
   });
 

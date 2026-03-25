@@ -48,7 +48,7 @@ export default async function AdminProjectsPage() {
              </div>
              <div>
                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>رابط الصورة (URL)</label>
-               <input name="imageUrl" type="url" placeholder="https://..." style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid var(--border-color)', outline: 'none' }} />
+               <input name="imageFile" type="file" accept="image/*" style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid var(--border-color)', outline: 'none' }} />
              </div>
           </div>
 
