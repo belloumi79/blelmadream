@@ -12,6 +12,7 @@
     "@auth/drizzle-adapter": "^1.8.0",
     "@libsql/client": "^0.17.2",
     "@vercel/blob": "^2.3.1",
+    "bcryptjs": "^2.4.3",
     "drizzle-orm": "^0.45.1",
     "lucide-react": "^0.577.0",
     "next": "16.2.1",
@@ -19,10 +20,12 @@
     "next-intl": "^4.8.3",
     "react": "19.2.4",
     "react-dom": "19.2.4",
+    "resend": "^4.1.2",
     "sharp": "^0.34.5",
     "uuid": "^13.0.0"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
