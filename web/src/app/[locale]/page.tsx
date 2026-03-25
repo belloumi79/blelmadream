@@ -1,8 +1,9 @@
 import { getTranslations } from 'next-intl/server';
-import { HardHat, Leaf, Code, Globe2, Sparkles, Heart } from "lucide-react";
+import { Heart } from 'lucide-react';
 import EventsList from '@/components/EventsList';
 import ProjectsList from '@/components/ProjectsList';
 import ProductsList from '@/components/ProductsList';
+import SignupForm from '@/components/SignupForm';
 
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
   const resolvedParams = await params;
@@ -21,7 +22,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           <p>{t('description')}</p>
           <div className="hero-actions">
             <a href="#about" className="btn-primary">{t('cta_discover')}</a>
-            <a href="https://www.facebook.com/profile.php?id=100066988150540" target="_blank" rel="noopener noreferrer" className="btn-secondary">{t('cta_contact')}</a>
+            <a href="#signup" className="btn-secondary">{locale === 'ar' ? 'انضم إلينا' : 'Rejoignez-nous'}</a>
           </div>
         </div>
       </section>
@@ -44,6 +45,10 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       <EventsList locale={locale} />
       <ProjectsList locale={locale} />
       <ProductsList />
+      
+      <section id="signup" style={{ padding: '4rem 0', background: '#fff' }}>
+        <SignupForm />
+      </section>
     </>
   );
 }
