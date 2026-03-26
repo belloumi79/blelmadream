@@ -71,3 +71,42 @@ export async function deleteProject(formData: FormData) {
   revalidatePath('/[locale]/admin/projects', 'page');
   revalidatePath('/[locale]', 'page');
 }
+
+export async function updateProject(formData: FormData) {
+  await assertAdmin();
+
+  const id = formData.get('id') as string;
+  const titleAr = formData.get('titleAr') as string;
+  const titleFr = formData.get('titleFr') as string;
+  const titleEn = formData.get('titleEn') as string;
+  const descriptionAr = formData.get('descriptionAr') as string;
+  const descriptionFr = formData.get('descriptionFr') as string;
+  const descriptionEn = formData.get('descriptionEn') as string;
+  const category = formData.get('category') as string;
+  const imageFile = formData.get('imageFile') as File;
+  const needsFunding = formData.get('needsFunding') === 'on';
+
+  const updateData: any = {
+    titleAr,
+    titleFr: titleFr || null,
+    titleEn: titleEn || null,
+    descriptionAr: descriptionAr || null,
+    descriptionFr: descriptionFr || null,
+    descriptionEn: descriptionEn || null,
+    category,
+    needsFunding,
+    updatedAt: new Date(),
+  };
+
+  if (imageFile && imageFile.size > 0 && imageFile.name !== 'undefined') {
+    const webpBuffer = await convertToWebP(imageFile);
+    const filename = `projects/${Date.now()}-${imageFile.name.split('.')[0]}.webp`;
+    const blob = await put(filename, webpBuffer, { access: 'public' });
+    updateData.imageUrl = blob.url;
+  }
+
+  await db.update(projects).set(updateData).where(eq(projects.id, id));
+
+  revalidatePath('/[locale]/admin/projects', 'page');
+  revalidatePath('/[locale]', 'page');
+}

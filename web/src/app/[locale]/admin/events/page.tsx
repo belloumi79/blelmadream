@@ -1,11 +1,15 @@
 import { db } from '@/db';
 import { events } from '@/db/schema';
-import { createEvent } from '@/app/actions/events';
+import { createEvent, deleteEvent } from '@/app/actions/events';
+import { desc } from 'drizzle-orm';
+import { Pencil, Trash2 } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
 
-export default async function AdminEventsPage() {
-  const allEvents = await db.select().from(events);
+export default async function AdminEventsPage({ params }: { params: Promise<{ locale: string }> }) {
+  const resolvedParams = await params;
+  const locale = resolvedParams.locale;
+  const allEvents = await db.select().from(events).orderBy(desc(events.date));
 
   return (
     <div dir="rtl">
@@ -61,18 +65,29 @@ export default async function AdminEventsPage() {
           <button type="submit" className="btn-primary" style={{ alignSelf: 'flex-start', border: 'none' }}>حفظ الحدث الجديد</button>
         </form>
       </div>
-
-      {/* List */}
       <div>
         <h2 style={{ color: 'var(--brand-blue)', marginBottom: '1.5rem' }}>الأحداث الحالية</h2>
         <div style={{ display: 'grid', gap: '1rem' }}>
           {allEvents.map((evt) => (
-            <div key={evt.id} style={{ display: 'flex', gap: '1.5rem', padding: '1.5rem', border: '1px solid var(--border-color)', borderRadius: '12px', background: 'white' }}>
+            <div key={evt.id} style={{ display: 'flex', gap: '1.5rem', padding: '1.5rem', border: '1px solid var(--border-color)', borderRadius: '12px', background: 'white', alignItems: 'center' }}>
               {evt.imageUrl && <img src={evt.imageUrl} style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '8px' }} />}
-              <div>
+              <div style={{ flex: 1 }}>
                 <h3 style={{ margin: 0 }}>{evt.titleAr}</h3>
                 <p style={{ color: 'var(--brand-green)', fontSize: '0.8rem' }}>{evt.date}</p>
                 <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>{evt.contentAr.substring(0, 100)}...</p>
+              </div>
+              <div style={{ display: 'flex', gap: '1rem' }}>
+                <a href={`/${locale}/admin/events/edit/${evt.id}`} style={{ color: 'var(--brand-blue)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <Pencil size={18} />
+                  تعديل
+                </a>
+                <form action={deleteEvent}>
+                  <input type="hidden" name="id" value={evt.id} />
+                  <button type="submit" style={{ color: 'red', border: 'none', background: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Trash2 size={18} />
+                    حذف
+                  </button>
+                </form>
               </div>
             </div>
           ))}

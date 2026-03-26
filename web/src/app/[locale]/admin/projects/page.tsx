@@ -1,11 +1,15 @@
 import { db } from '@/db';
 import { projects } from '@/db/schema';
 import { createProject, deleteProject } from '@/app/actions/projects';
+import { desc } from 'drizzle-orm';
+import { Pencil, Trash2 } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
 
-export default async function AdminProjectsPage() {
-  const allProjects = await db.select().from(projects);
+export default async function AdminProjectsPage({ params }: { params: Promise<{ locale: string }> }) {
+  const resolvedParams = await params;
+  const locale = resolvedParams.locale;
+  const allProjects = await db.select().from(projects).orderBy(desc(projects.createdAt));
 
   return (
     <div dir="rtl">
@@ -65,18 +69,28 @@ export default async function AdminProjectsPage() {
           <button type="submit" className="btn-primary" style={{ alignSelf: 'flex-start', border: 'none' }}>حفظ المشروع الجديد</button>
         </form>
       </div>
-
+      <h2 style={{ color: 'var(--brand-blue)', marginBottom: '1.5rem' }}>المشاريع الحالية</h2>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '1.5rem' }}>
         {allProjects.map((p) => (
-          <div key={p.id} style={{ border: '1px solid var(--border-color)', borderRadius: '12px', background: 'white', overflow: 'hidden' }}>
+          <div key={p.id} style={{ border: '1px solid var(--border-color)', borderRadius: '12px', background: 'white', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
             {p.imageUrl && <img src={p.imageUrl} style={{ width: '100%', height: '180px', objectFit: 'cover' }} />}
-            <div style={{ padding: '1.5rem' }}>
+            <div style={{ padding: '1.5rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
               <h3>{p.titleAr}</h3>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>{p.descriptionAr?.substring(0, 80)}...</p>
-              <form action={deleteProject} style={{ marginTop: '1rem' }}>
-                 <input type="hidden" name="projectId" value={p.id} />
-                 <button type="submit" style={{ color: 'red', border: 'none', background: 'none', cursor: 'pointer', fontSize: '0.85rem' }}>حذف المشروع</button>
-              </form>
+              
+              <div style={{ marginTop: 'auto', display: 'flex', gap: '1.5rem', paddingTop: '1rem', borderTop: '1px solid var(--border-color)' }}>
+                <a href={`/${locale}/admin/projects/edit/${p.id}`} style={{ color: 'var(--brand-blue)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.85rem' }}>
+                  <Pencil size={16} />
+                  تعديل
+                </a>
+                <form action={deleteProject}>
+                  <input type="hidden" name="projectId" value={p.id} />
+                  <button type="submit" style={{ color: 'red', border: 'none', background: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.85rem' }}>
+                    <Trash2 size={16} />
+                    حذف
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         ))}
