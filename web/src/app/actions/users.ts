@@ -21,7 +21,7 @@ export async function updateUserRole(formData: FormData) {
   const userId = formData.get('userId') as string;
   const newRole = formData.get('role') as string;
 
-  const allowedRoles = ['user', 'subscriber', 'friend'];
+  const allowedRoles = ['user', 'subscriber', 'friend', 'coadmin'];
   if (!allowedRoles.includes(newRole)) {
     throw new Error('Invalid role');
   }

@@ -13,7 +13,7 @@ export default async function AdminLayout({
   }
 
   // Double check admin role
-  if (session.user.role !== 'admin' && session.user.email !== 'belloumi.karim.professional@gmail.com') {
+  if (session.user.role !== 'admin' && session.user.role !== 'coadmin' && session.user.email !== 'belloumi.karim.professional@gmail.com') {
     return (
       <div style={{ padding: '2rem', textAlign: 'center', color: 'red' }}>
         <h2>عذراً، هذا القسم مخصص للمشرفين فقط.</h2>

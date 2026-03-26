@@ -3,7 +3,8 @@ import { Resend } from 'resend';
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function sendVerificationEmail(email: string, token: string) {
-  const confirmLink = `${process.env.NEXT_PUBLIC_APP_URL}/api/verify?token=${token}`;
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
+  const confirmLink = `${baseUrl}/api/verify?token=${token}`;
 
   await resend.emails.send({
     from: 'Dream Blelma <onboarding@resend.dev>',

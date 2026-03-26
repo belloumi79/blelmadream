@@ -5,7 +5,7 @@ import { auth } from '@/auth';
 
 export async function uploadImage(file: File) {
   const session = await auth();
-  if (!session?.user || session.user.role !== 'admin') {
+  if (!session?.user || (session.user.role !== 'admin' && session.user.role !== 'coadmin')) {
     throw new Error('Unauthorized');
   }
 

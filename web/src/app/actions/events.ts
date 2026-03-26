@@ -11,7 +11,7 @@ import { convertToWebP } from '@/lib/image';
 export async function createEvent(formData: FormData) {
   const session = await auth();
   
-  if (!session?.user || session.user.role !== 'admin') {
+  if (!session?.user || (session.user.role !== 'admin' && session.user.role !== 'coadmin')) {
     throw new Error('Unauthorized: Admin access only');
   }
 
