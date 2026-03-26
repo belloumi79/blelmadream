@@ -14,7 +14,7 @@ export default async function ProductsList() {
       <div className="nav-container">
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
           <h2 style={{ fontSize: '2.5rem', color: 'var(--brand-blue)', marginBottom: '1.2rem' }}>
-            {locale === 'ar' ? 'منتجات ريف بلمة' : locale === 'fr' ? 'Produits du Terroir' : 'Local Products'}
+            {locale === 'ar' ? 'منتجات ريف البلالمة' : locale === 'fr' ? 'Produits du Terroir' : 'Local Products'}
           </h2>
           <p style={{ maxWidth: '700px', margin: '0 auto', color: 'var(--text-secondary)', lineHeight: '1.8' }}>
             {locale === 'ar' 
