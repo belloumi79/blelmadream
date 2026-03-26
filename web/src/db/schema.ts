@@ -103,3 +103,26 @@ export const events = sqliteTable('events', {
   imageUrl: text('image_url'),
   createdAt: integer('created_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
 });
+
+export const orders = sqliteTable('orders', {
+  id: text('id').primaryKey(),
+  userId: text('user_id').references(() => users.id),
+  totalAmount: integer('total_amount').notNull(),
+  status: text('status').notNull().default('pending'), // pending, paid, shipped, delivered, cancelled
+  paymentMethod: text('payment_method').notNull(), // stripe, cod
+  paymentStatus: text('payment_status').notNull().default('pending'), // pending, completed, failed
+  shippingAddress: text('shipping_address'),
+  customerName: text('customer_name'),
+  customerEmail: text('customer_email'),
+  customerPhone: text('customer_phone'),
+  stripeSessionId: text('stripe_session_id'),
+  createdAt: integer('created_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
+});
+
+export const orderItems = sqliteTable('order_items', {
+  id: text('id').primaryKey(),
+  orderId: text('order_id').notNull().references(() => orders.id, { onDelete: 'cascade' }),
+  productId: text('product_id').notNull().references(() => products.id),
+  quantity: integer('quantity').notNull(),
+  priceAtTime: integer('price_at_time').notNull(),
+});

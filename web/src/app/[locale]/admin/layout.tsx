@@ -29,6 +29,7 @@ export default async function AdminLayout({
         <h2 style={{ color: 'var(--brand-yellow)', fontSize: '1.5rem', marginBottom: '2rem' }}>لوحة التحكم</h2>
         <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1rem', padding: 0 }}>
           <li><a href="/admin" style={{ color: 'white', textDecoration: 'none' }}>الرئيسية</a></li>
+          <li><a href="/admin/orders" style={{ color: 'white', textDecoration: 'none' }}>قائمة الطلبات</a></li>
           {(session.user.role === 'admin' || session.user.email === 'belloumi.karim.professional@gmail.com') && (
             <li><a href="/admin/users" style={{ color: 'white', textDecoration: 'none' }}>إدارة المستخدمين</a></li>
           )}

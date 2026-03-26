@@ -51,5 +51,22 @@
     "role_subscriber": "Subscriber",
     "role_friend": "Friend of Association",
     "role_user": "User"
+  },
+  "Store": {
+    "addToCart": "Add to Cart",
+    "cart": "Shopping Cart",
+    "total": "Grand Total",
+    "checkout": "Checkout",
+    "empty": "Your cart is empty",
+    "items": "items",
+    "paymentMethod": "Payment Method",
+    "cod": "Cash on Delivery",
+    "stripe": "Pay by Card (Stripe)",
+    "orderSuccess": "Your order has been placed successfully!",
+    "orderError": "An error occurred while processing your order.",
+    "name": "Full Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "address": "Full Shipping Address"
   }
 }

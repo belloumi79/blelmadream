@@ -3,6 +3,8 @@ import { products } from '@/db/schema';
 import { ShoppingBag, Leaf, Award } from 'lucide-react';
 import { getLocale } from 'next-intl/server';
 
+import AddToCartButton from './AddToCartButton';
+
 export default async function ProductsList() {
   const locale = await getLocale();
   const allProducts = await db.select().from(products);
@@ -62,10 +64,14 @@ export default async function ProductsList() {
                      {desc}
                    </p>
                    
-                   <button className="btn-primary" style={{ width: '100%', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.8rem' }}>
-                     <ShoppingBag size={20} />
-                     {locale === 'ar' ? 'اطلب الآن' : locale === 'fr' ? 'Commander' : 'Order Now'}
-                   </button>
+                   <AddToCartButton 
+                     product={{
+                       id: p.id,
+                       name,
+                       price: p.price,
+                       imageUrl: p.imageUrl
+                     }}
+                   />
                  </div>
                </div>
              );

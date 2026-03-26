@@ -51,5 +51,22 @@
     "role_subscriber": "Abonné(e)",
     "role_friend": "Ami(e) de l'asso",
     "role_user": "Utilisateur"
+  },
+  "Store": {
+    "addToCart": "Ajouter au panier",
+    "cart": "Panier",
+    "total": "Total Global",
+    "checkout": "Passer la commande",
+    "empty": "Votre panier est vide",
+    "items": "articles",
+    "paymentMethod": "Mode de Paiement",
+    "cod": "Paiement à la livraison",
+    "stripe": "Paiement par carte (Stripe)",
+    "orderSuccess": "Votre commande a été passée avec succès !",
+    "orderError": "Une erreur est survenue lors de la commande.",
+    "name": "Nom Complet",
+    "email": "Adresse Email",
+    "phone": "Numéro de Téléphone",
+    "address": "Adresse de Livraison"
   }
 }

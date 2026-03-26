@@ -22,6 +22,8 @@ export const metadata: Metadata = {
   description: "نبض الريف التونسي. أصالة، صمود، وبناء. Empowering local farmers, celebrating vibrant heritage, and building sustainable futures.",
 };
 
+import CartIcon from '@/components/CartIcon';
+
 export default async function RootLayout({
   children,
   params
@@ -68,6 +70,7 @@ export default async function RootLayout({
               </div>
 
               <div className="nav-actions">
+                <CartIcon />
                 <LanguageSwitcher />
                 {session?.user ? (
                   <div className="auth-actions" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
