@@ -47,6 +47,7 @@
     "login": "Se connecter",
     "dashboard": "Tableau de bord",
     "role_admin": "Administrateur",
+    "role_coadmin": "Co-Admin",
     "role_subscriber": "Abonné(e)",
     "role_friend": "Ami(e) de l'asso",
     "role_user": "Utilisateur"

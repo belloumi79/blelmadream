@@ -82,7 +82,7 @@ export default async function RootLayout({
                         {auth_t('logout')}
                       </button>
                     </form>
-                    {session.user.role === 'admin' && (
+                    {(session.user.role === 'admin' || session.user.role === 'coadmin') && (
                       <a href={`/${locale}/admin`} className="btn-primary btn-sm">
                         {auth_t('dashboard')}
                       </a>

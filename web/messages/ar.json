@@ -47,6 +47,7 @@
     "login": "تسجيل الدخول",
     "dashboard": "لوحة التحكم",
     "role_admin": "مدير النظام",
+    "role_coadmin": "مشرف",
     "role_subscriber": "مشترك بالغ",
     "role_friend": "صديق الجمعية",
     "role_user": "مستخدم عادي"
