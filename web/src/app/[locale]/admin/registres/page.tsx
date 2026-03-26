@@ -17,11 +17,19 @@ import { FileText, Users, Briefcase, Heart, Plus, Download, Trash2 } from 'lucid
 
 export const dynamic = 'force-dynamic';
 
-export default async function AdminRegistersPage() {
-  const membersList = await db.select().from(associationMembers).orderBy(desc(associationMembers.registrationDate));
-  const deliberationsList = await db.select().from(associationDeliberations).orderBy(desc(associationDeliberations.meetingDate));
-  const projectsList = await db.select().from(administrativeProjects).orderBy(desc(administrativeProjects.startDate));
-  const donationsList = await db.select().from(associationDonations).orderBy(desc(associationDonations.dateReceived));
+export default async function AdminRegistersPage({ 
+  params 
+}: { 
+  params: Promise<{ locale: string }> 
+}) {
+  const resolvedParams = await params;
+  const locale = resolvedParams.locale;
+
+  // Safe fetch with potential empty fallbacks
+  const membersList = (await db.select().from(associationMembers).orderBy(desc(associationMembers.registrationDate))) || [];
+  const deliberationsList = (await db.select().from(associationDeliberations).orderBy(desc(associationDeliberations.meetingDate))) || [];
+  const projectsList = (await db.select().from(administrativeProjects).orderBy(desc(administrativeProjects.startDate))) || [];
+  const donationsList = (await db.select().from(associationDonations).orderBy(desc(associationDonations.dateReceived))) || [];
   
   // To allow linking members to portal users, fetch users
   const portalUsers = await db.select().from(users);
