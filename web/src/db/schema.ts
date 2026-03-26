@@ -1,5 +1,5 @@
 import { sqliteTable, text, integer, real } from 'drizzle-orm/sqlite-core';
-import { sql } from 'drizzle-orm';
+import { sql, relations } from 'drizzle-orm';
 
 import type { AdapterAccountType } from "next-auth/adapters";
 import { primaryKey } from "drizzle-orm/sqlite-core";
@@ -181,3 +181,72 @@ export const associationDonations = sqliteTable('association_donations', {
   dateReceived: text('date_received').notNull(),
   createdAt: integer('created_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
 });
+
+// --- Accounting & Inventory (Tunisian Standard 45) ---
+
+// Chart of Accounts (دليل الحسابات)
+export const accountingAccounts = sqliteTable('accounting_accounts', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  code: text('code').notNull().unique(), // e.g., 53 (Caisse), 70 (Recettes)
+  nameAr: text('name_ar').notNull(),
+  nameFr: text('name_fr'),
+  type: text('type').notNull(), // asset, liability, revenue, expense
+});
+
+// Journal Général (الدفتر اليومي)
+export const accountingJournal = sqliteTable('accounting_journal', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  date: text('date').notNull(),
+  description: text('description').notNull(),
+  referenceNumber: text('reference_number'), // رقم الوثيقة (فاتورة، وصل...)
+  documentUrl: text('document_url'), // Scan de la pièce justificative
+  isLocked: integer('is_locked', { mode: 'boolean' }).default(false), // Verrouillage pour intégrité
+  createdAt: integer('created_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
+});
+
+// General Ledger Entries (قيود المحاسبة - Double Entry)
+export const accountingLedger = sqliteTable('accounting_ledger', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  journalId: integer('journal_id').notNull().references(() => accountingJournal.id, { onDelete: 'cascade' }),
+  accountId: integer('account_id').notNull().references(() => accountingAccounts.id),
+  debit: real('debit').default(0),
+  credit: real('credit').default(0),
+});
+
+// Inventory (دفتر الجرد)
+export const associationInventory = sqliteTable('association_inventory', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  itemNameAr: text('item_name_ar').notNull(),
+  quantity: integer('quantity').notNull(),
+  value: real('value').notNull(), // Valeur d'acquisition
+  acquisitionDate: text('acquisition_date').notNull(),
+  location: text('location'),
+  condition: text('condition'), // جيد، متوسط، يحتاج إصلاح
+});
+
+// Audit Log (سجل التتبع)
+export const auditLogs = sqliteTable('audit_logs', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  userId: text('user_id').references(() => users.id),
+  action: text('action').notNull(), // CREATE_MEMBER, UPDATE_PROJECT, LOCK_JOURNAL...
+  entityType: text('entity_type').notNull(),
+  entityId: text('entity_id'),
+  details: text('details'),
+  timestamp: integer('timestamp', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
+});
+
+// relations
+export const journalRelations = relations(accountingJournal, ({ many }) => ({
+  entries: many(accountingLedger),
+}));
+
+export const ledgerRelations = relations(accountingLedger, ({ one }) => ({
+  journal: one(accountingJournal, {
+    fields: [accountingLedger.journalId],
+    references: [accountingJournal.id],
+  }),
+  account: one(accountingAccounts, {
+    fields: [accountingLedger.accountId],
+    references: [accountingAccounts.id],
+  }),
+}));
