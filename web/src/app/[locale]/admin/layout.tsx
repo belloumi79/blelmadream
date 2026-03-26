@@ -36,6 +36,7 @@ export default async function AdminLayout({
           <li><a href="/admin/events" style={{ color: 'white', textDecoration: 'none' }}>الأحداث والمهرجانات</a></li>
           <li><a href="/admin/projects" style={{ color: 'white', textDecoration: 'none' }}>المشاريع</a></li>
           <li><a href="/admin/products" style={{ color: 'white', textDecoration: 'none' }}>المنتجات المحلية</a></li>
+          <li><a href="/admin/registres" style={{ color: 'white', textDecoration: 'none' }}>السجلات الإدارية (ERP)</a></li>
           <li><a href="/" style={{ color: 'var(--brand-green)', textDecoration: 'none', marginTop: '2rem', display: 'block' }}>&larr; العودة للموقع</a></li>
         </ul>
       </aside>

@@ -1,4 +1,4 @@
-import { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core';
+import { sqliteTable, text, integer, real } from 'drizzle-orm/sqlite-core';
 import { sql } from 'drizzle-orm';
 
 import type { AdapterAccountType } from "next-auth/adapters";
@@ -125,4 +125,59 @@ export const orderItems = sqliteTable('order_items', {
   productId: text('product_id').notNull().references(() => products.id),
   quantity: integer('quantity').notNull(),
   priceAtTime: integer('price_at_time').notNull(),
+});
+
+// --- Tunisian Legal Administrative Registers (Decree-law 2011-88) ---
+
+// A. Registre des Membres (سجل الأعضاء)
+export const associationMembers = sqliteTable('association_members', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  userId: text('user_id').references(() => users.id, { onDelete: 'set null' }), // Link to portal user if applicable
+  fullName: text('full_name').notNull(), // الاسم واللقب
+  address: text('address').notNull(), // العنوان
+  nationality: text('nationality').notNull(), // الجنسية
+  age: integer('age').notNull(), // العمر
+  profession: text('profession').notNull(), // المهنة
+  registrationDate: text('registration_date').notNull(), // تاريخ الانخراط
+  subscriptionAmount: real('subscription_amount'), // مبلغ الاشتراك
+  status: text('status').notNull().default('active'), // active, former
+  createdAt: integer('created_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
+});
+
+// B. Registre des Délibérations (سجل المداولات)
+export const associationDeliberations = sqliteTable('association_deliberations', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  organ: text('organ').notNull(), // الهيكل (الجلسة العامة، المكتب التنفيذي)
+  meetingDate: text('meeting_date').notNull(), // تاريخ الاجتماع
+  location: text('location').notNull(), // مكان الاجتماع
+  subject: text('subject').notNull(), // موضوع المداولة
+  decisions: text('decisions').notNull(), // القرارات المتخذة
+  fileUrl: text('file_url'), // lien vers le PV scanné et signé
+  createdAt: integer('created_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
+});
+
+// C. Registre des Activités et Projets (سجل النشاطات والمشاريع)
+export const administrativeProjects = sqliteTable('administrative_projects', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  title: text('title').notNull(), // عنوان المشروع
+  nature: text('nature').notNull(), // طبيعة النشاط
+  budget: real('budget').notNull(), // الميزانية التقديرية
+  fundingSource: text('funding_source'), // مصدر التمويل
+  partners: text('partners'), // الشركاء
+  startDate: text('start_date'),
+  endDate: text('end_date'),
+  createdAt: integer('created_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
+});
+
+// D. Registre des Aides et Dons (سجل المساعدات والهبات)
+export const associationDonations = sqliteTable('association_donations', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  donorName: text('donor_name').notNull(), // هوية المانح
+  nature: text('nature').notNull(), // (نقدي أو عيني) Nature : numéraire ou en nature
+  source: text('source').notNull(), // (عمومي أو خاص) Source : public ou privé
+  origin: text('origin').notNull(), // (وطني أو أجنبي) Origine : national ou étranger
+  amount: real('amount').notNull(), // المبلغ
+  purpose: text('purpose'), // الغرض من الهبة
+  dateReceived: text('date_received').notNull(),
+  createdAt: integer('created_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
 });
