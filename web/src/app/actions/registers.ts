@@ -43,7 +43,7 @@ export async function createMember(formData: FormData) {
     userId: userId || null,
   });
 
-  revalidatePath('/[locale]/admin/registres', 'page');
+  revalidatePath('/admin/registres', 'layout');
 }
 
 // B. Registre des Délibérations (سجل المداولات)
@@ -73,7 +73,7 @@ export async function createDeliberation(formData: FormData) {
     fileUrl,
   });
 
-  revalidatePath('/[locale]/admin/registres', 'page');
+  revalidatePath('/admin/registres', 'layout');
 }
 
 // C. Registre des Activités et Projets (سجل النشاطات والمشاريع)
@@ -98,7 +98,7 @@ export async function createAdministrativeProject(formData: FormData) {
     endDate,
   });
 
-  revalidatePath('/[locale]/admin/registres', 'page');
+  revalidatePath('/admin/registres', 'layout');
 }
 
 // D. Registre des Aides et Dons (سجل المساعدات والهبات)
@@ -123,18 +123,18 @@ export async function createDonation(formData: FormData) {
     dateReceived,
   });
 
-  revalidatePath('/[locale]/admin/registres', 'page');
+  revalidatePath('/admin/registres', 'layout');
 }
 
 // Basic Delete Actions
 export async function deleteMember(id: number) {
   await assertAccess();
   await db.delete(associationMembers).where(eq(associationMembers.id, id));
-  revalidatePath('/[locale]/admin/registres', 'page');
+  revalidatePath('/admin/registres', 'layout');
 }
 
 export async function deleteDeliberation(id: number) {
   await assertAccess();
   await db.delete(associationDeliberations).where(eq(associationDeliberations.id, id));
-  revalidatePath('/[locale]/admin/registres', 'page');
+  revalidatePath('/admin/registres', 'layout');
 }
