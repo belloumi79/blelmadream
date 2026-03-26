@@ -61,9 +61,9 @@ export default async function RootLayout({
 
               {/* Desktop nav links */}
               <div className="nav-links">
-                <a href="#about">{t('about')}</a>
-                <a href="#projects">{t('projects')}</a>
-                <a href="#store">{t('store')}</a>
+                <a href={`/${locale}#about`}>{t('about')}</a>
+                <a href={`/${locale}#projects`}>{t('projects')}</a>
+                <a href={`/${locale}#store`}>{t('store')}</a>
                 <a href="https://www.facebook.com/profile.php?id=100066988150540" target="_blank" rel="noopener noreferrer" className="social-link">{t('facebook')}</a>
               </div>
 

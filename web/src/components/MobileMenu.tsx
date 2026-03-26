@@ -46,9 +46,9 @@ export default function MobileMenu({ user }: MobileMenuProps) {
               </span>
             </div>
           )}
-          <a href="#about" onClick={closeMenu}>{t('about')}</a>
-          <a href="#projects" onClick={closeMenu}>{t('projects')}</a>
-          <a href="#store" onClick={closeMenu}>{t('store')}</a>
+          <a href={`/${locale}#about`} onClick={closeMenu}>{t('about')}</a>
+          <a href={`/${locale}#projects`} onClick={closeMenu}>{t('projects')}</a>
+          <a href={`/${locale}#store`} onClick={closeMenu}>{t('store')}</a>
           {(user?.role === 'admin' || user?.role === 'coadmin') && (
             <a href={`/${locale}/admin`} onClick={closeMenu} style={{ color: 'var(--brand-green)', fontWeight: 'bold' }}>
               {auth_t('dashboard')}

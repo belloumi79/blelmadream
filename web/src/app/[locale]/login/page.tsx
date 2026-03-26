@@ -20,10 +20,11 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    const callbackUrl = searchParams.get('callbackUrl') || `/${locale}`;
     await signIn('credentials', {
       email,
       password,
-      callbackUrl: `/${locale}`,
+      callbackUrl,
     });
     setLoading(false);
   };
@@ -81,7 +82,7 @@ export default function LoginPage() {
         </div>
 
         <button 
-          onClick={() => signIn('google', { callbackUrl: `/${locale}` })}
+          onClick={() => signIn('google', { callbackUrl: searchParams.get('callbackUrl') || `/${locale}` })}
           style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid #ddd', background: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', cursor: 'pointer' }}
         >
           <img src="https://authjs.dev/img/providers/google.svg" width="20" height="20" alt="Google" />
