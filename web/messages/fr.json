@@ -73,6 +73,7 @@
     "title": "Météo actuelle à Blelma",
     "temperature": "Température",
     "wind": "Vent",
-    "loading": "Chargement de la météo..."
+    "loading": "Chargement... ",
+    "aqi": "Qualité de l'air (AQI)"
   }
 }
