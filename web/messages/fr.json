@@ -68,5 +68,11 @@
     "email": "Adresse Email",
     "phone": "Numéro de Téléphone",
     "address": "Adresse de Livraison"
+  },
+  "Weather": {
+    "title": "Météo actuelle à Blelma",
+    "temperature": "Température",
+    "wind": "Vent",
+    "loading": "Chargement de la météo..."
   }
 }

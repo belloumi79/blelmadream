@@ -4,6 +4,7 @@ import EventsList from '@/components/EventsList';
 import ProjectsList from '@/components/ProjectsList';
 import ProductsList from '@/components/ProductsList';
 import SignupForm from '@/components/SignupForm';
+import WeatherWidget from '@/components/WeatherWidget';
 
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
   const resolvedParams = await params;
@@ -39,6 +40,12 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             </div>
             {/* ... other stats */}
           </div>
+        </div>
+      </section>
+
+      <section className="section bg-blue-tint" style={{ padding: '0 0 4rem 0' }}>
+        <div className="nav-container" style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <WeatherWidget />
         </div>
       </section>
 
