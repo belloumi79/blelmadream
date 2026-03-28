@@ -43,7 +43,24 @@ export default async function EventsList({ locale }: { locale: string }) {
                       <span>{evt.date}</span>
                     </div>
                   )}
-                  <p style={{ color: "var(--text-secondary)", lineHeight: "1.6" }}>{content}</p>
+                  <p style={{ color: "var(--text-secondary)", lineHeight: "1.6", marginBottom: evt.externalLink ? '1.5rem' : 0 }}>{content}</p>
+                  
+                  {evt.externalLink && (
+                    <a 
+                      href={evt.externalLink} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="btn-primary" 
+                      style={{ 
+                        display: 'inline-block',
+                        padding: '0.6rem 1.2rem',
+                        fontSize: '0.9rem',
+                        textDecoration: 'none'
+                      }}
+                    >
+                      {locale === 'ar' ? 'الموقع الرسمي' : locale === 'fr' ? 'Site officiel' : 'Official site'}
+                    </a>
+                  )}
                 </div>
               </div>
             );

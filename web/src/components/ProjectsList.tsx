@@ -65,6 +65,26 @@ export default async function ProjectsList({ locale }: { locale: string }) {
                   <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: '1.7', flex: 1 }}>
                     {desc}
                   </p>
+                  
+                  {project.externalLink && (
+                    <a 
+                      href={project.externalLink} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="btn-primary" 
+                      style={{ 
+                        marginTop: '1.5rem', 
+                        width: '100%', 
+                        textAlign: 'center', 
+                        padding: '0.8rem',
+                        fontSize: '0.9rem',
+                        textDecoration: 'none',
+                        display: 'block'
+                      }}
+                    >
+                      {locale === 'ar' ? 'زيارة موقع المشروع' : locale === 'fr' ? 'Visiter le site' : 'Visit Site'}
+                    </a>
+                  )}
                 </div>
               </div>
             );

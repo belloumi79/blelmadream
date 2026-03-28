@@ -27,6 +27,7 @@ export async function createProject(formData: FormData) {
   const descriptionEn = formData.get('descriptionEn') as string;
   const category = formData.get('category') as string;
   const imageFile = formData.get('imageFile') as File;
+  const externalLink = formData.get('externalLink') as string;
   const needsFunding = formData.get('needsFunding') === 'on';
 
   if (!titleAr || !category) {
@@ -57,6 +58,7 @@ export async function createProject(formData: FormData) {
     descriptionEn: descriptionEn || null,
     category,
     imageUrl,
+    externalLink: externalLink || null,
     needsFunding,
   });
 
@@ -84,6 +86,7 @@ export async function updateProject(formData: FormData) {
   const descriptionEn = formData.get('descriptionEn') as string;
   const category = formData.get('category') as string;
   const imageFile = formData.get('imageFile') as File;
+  const externalLink = formData.get('externalLink') as string;
   const needsFunding = formData.get('needsFunding') === 'on';
 
   const updateData: any = {
@@ -94,6 +97,7 @@ export async function updateProject(formData: FormData) {
     descriptionFr: descriptionFr || null,
     descriptionEn: descriptionEn || null,
     category,
+    externalLink: externalLink || null,
     needsFunding,
     updatedAt: new Date(),
   };

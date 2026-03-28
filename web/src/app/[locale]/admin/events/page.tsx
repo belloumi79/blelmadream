@@ -45,6 +45,10 @@ export default async function AdminEventsPage({ params }: { params: Promise<{ lo
                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>صورة الحدث (WebP تلقائياً)</label>
                <input name="imageFile" type="file" accept="image/*" style={{ width: '100%', padding: '0.5rem' }} />
              </div>
+             <div>
+               <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>رابط خارجي (ويب)</label>
+               <input name="externalLink" type="url" placeholder="https://..." style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid var(--border-color)' }} />
+             </div>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>

@@ -71,6 +71,7 @@ export const projects = sqliteTable('projects', {
   descriptionFr: text('description_fr'),
   category: text('category').notNull(),
   imageUrl: text('image_url'),
+  externalLink: text('external_link'),
   needsFunding: integer('needs_funding', { mode: 'boolean' }).default(false),
   createdAt: integer('created_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
 });
@@ -101,6 +102,7 @@ export const events = sqliteTable('events', {
   contentFr: text('content_fr'),
   date: text('date'),
   imageUrl: text('image_url'),
+  externalLink: text('external_link'),
   createdAt: integer('created_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
 });
 

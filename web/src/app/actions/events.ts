@@ -24,6 +24,7 @@ export async function createEvent(formData: FormData) {
   const contentEn = formData.get('contentEn') as string;
   const dateStr = formData.get('date') as string;
   const imageFile = formData.get('imageFile') as File;
+  const externalLink = formData.get('externalLink') as string;
 
   if (!titleAr || !contentAr) {
     throw new Error('Arabic Title and Content are required');
@@ -47,6 +48,7 @@ export async function createEvent(formData: FormData) {
     contentEn: contentEn || null,
     date: dateStr || null,
     imageUrl,
+    externalLink: externalLink || null,
   });
 
   revalidatePath('/[locale]/admin/events', 'page');
@@ -69,6 +71,7 @@ export async function updateEvent(formData: FormData) {
   const contentEn = formData.get('contentEn') as string;
   const dateStr = formData.get('date') as string;
   const imageFile = formData.get('imageFile') as File;
+  const externalLink = formData.get('externalLink') as string;
 
   const updateData: any = {
     titleAr,
@@ -78,6 +81,7 @@ export async function updateEvent(formData: FormData) {
     contentFr: contentFr || null,
     contentEn: contentEn || null,
     date: dateStr || null,
+    externalLink: externalLink || null,
     updatedAt: new Date(),
   };
 

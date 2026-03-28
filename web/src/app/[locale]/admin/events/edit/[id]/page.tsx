@@ -50,6 +50,10 @@ export default async function EditEventPage({
                <input name="imageFile" type="file" accept="image/*" style={{ width: '100%', padding: '0.5rem' }} />
                {event.imageUrl && <p style={{ fontSize: '0.8rem', marginTop: '0.5rem' }}>الصورة الحالية: <a href={event.imageUrl} target="_blank">رابط</a></p>}
              </div>
+             <div>
+               <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>رابط خارجي (ويب)</label>
+               <input name="externalLink" type="url" defaultValue={event.externalLink || ''} placeholder="https://..." style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid var(--border-color)' }} />
+             </div>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>

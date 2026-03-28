@@ -45,6 +45,10 @@ export default async function AdminProjectsPage({ params }: { params: Promise<{ 
               <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>صورة المشروع (WebP)</label>
               <input name="imageFile" type="file" accept="image/*" style={{ width: '100%', padding: '0.5rem' }} />
             </div>
+            <div>
+              <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>رابط خارجي (موقع المهرجان مثلاً)</label>
+              <input name="externalLink" type="url" placeholder="https://..." style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid var(--border-color)' }} />
+            </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', paddingTop: '1.5rem' }}>
               <input type="checkbox" name="needsFunding" id="needsFunding" />
               <label htmlFor="needsFunding" style={{ fontWeight: 'bold' }}>يحتاج لدعم تمويلي</label>
